@@ -26,3 +26,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/redis-test', function () {
+    try {
+        $redis = Redis::connection();
+        $redis->set('test', 'It works!');
+        $value = $redis->get('test');
+        return 'Redis is working: ' . $value;
+    } catch (\Exception $e) {
+        return 'Redis is not working: ' . $e->getMessage();
+    }
+});
