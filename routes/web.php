@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Livewire\Fornecedores\Index;
+use App\Livewire\Fornecedores\Create;
+use App\Livewire\Fornecedores\Edit;
+use App\Livewire\Fornecedores\Show;
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +22,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/fornecedores', Index::class)->name('fornecedores.index');
+    Route::get('/fornecedores/create', Create::class)->name('fornecedores.create');
+    Route::get('/fornecedores/{id}/edit', Edit::class)->name('fornecedores.edit');
+    Route::get('/fornecedores/{id}', Show::class)->name('fornecedores.show');
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::middleware([
     'auth:sanctum',
