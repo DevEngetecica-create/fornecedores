@@ -14,7 +14,7 @@ class Index extends Component
 
     public function render()
     {
-        $fornecedores = Fornecedor::paginate(8); // Ajuste o número de itens por página conforme necessário
+        $fornecedores = Fornecedor::orderBy('id', 'desc')->paginate(8); // Ajuste o número de itens por página conforme necessário
 
         return view('livewire.fornecedores.index', [
             'fornecedores' => $fornecedores,

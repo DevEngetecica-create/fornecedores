@@ -52,10 +52,44 @@
     @stack('modals')
 
     <!-- Bootstrap JS and dependencies (Popper.js and jQuery) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <!-- jQuery Mask Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Aplica a máscara ao campo CNPJ
+            $('#cnpj').mask('00.000.000/0000-00');
+
+            // Realiza a validação do CNPJ ao perder o foco
+            $('#cnpj').on('blur', function() {
+                var cnpj = $(this).val().replace(/\D/g, ''); // Remove os caracteres não numéricos
+                if (cnpj.length == 14) {
+                    $.ajax({
+                        url: 'https://brasilapi.com.br/api/cnpj/v1/' + cnpj,
+                        method: 'GET',
+                        success: function(response) {
+                            // Sucesso: O CNPJ é válido
+                            console.log(response);
+                            $('#nome_fantazia').val(response.nome_fantasia);
+                            $('#razao_social').val(response.razao_social);
+                            $('#endereco').val(response.descricao_tipo_de_logradouro + " " + response.logradouro + ", " + response.numero + ", " + response.bairro + "-" + response.cidade + "/ " + response.uf );
+                            //$('#cnpj').val('');
+                        },
+                        error: function() {
+                            // Erro: O CNPJ é inválido
+                            alert('CNPJ inválido');
+                            $('#cnpj').val(''); // Limpa o campo
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
     <script>
         function showAlert(message) {
@@ -69,6 +103,8 @@
     </script>
 
     @livewireScripts
+
+
 
 </body>
 
