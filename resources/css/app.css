@@ -5,3 +5,9 @@
 [x-cloak] {
     display: none;
 }
+
+.table-centered th,
+.table-centered td {
+    vertical-align: middle;
+    text-align: center;
+}

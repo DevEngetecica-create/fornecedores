@@ -1,37 +1,57 @@
-<div>
-    <h2>Listar Fornecedores</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome Fantasia</th>
-                <th>Razão Social</th>
-                <th>CNPJ</th>
-                <th>CPF</th>
-                <th>Nome Contato</th>
-                <th>Email Contato</th>
-                <th>Celular Contato</th>
-                <th>Endereço</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($fornecedores as $fornecedor)
-            <tr>
-                <td>{{ $fornecedor->nome_fantazia }}</td>
-                <td>{{ $fornecedor->razao_social }}</td>
-                <td>{{ $fornecedor->cnpj }}</td>
-                <td>{{ $fornecedor->cpf }}</td>
-                <td>{{ $fornecedor->nome_contato }}</td>
-                <td>{{ $fornecedor->email_contato }}</td>
-                <td>{{ $fornecedor->cel_contato }}</td>
-                <td>{{ $fornecedor->endereco }}</td>
-                <td>
-                    <a href="{{ route('fornecedores.show', $fornecedor->id) }}" class="btn btn-primary">Visualizar</a>
-                    <a href="{{ route('fornecedores.edit', $fornecedor->id) }}" class="btn btn-secondary">Editar</a>
-                    <button wire:click="delete({{ $fornecedor->id }})" class="btn btn-danger">Excluir</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+@section('title', 'Fornecedores')
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-2">
+                            <a href="{{ route('fornecedores.create') }}" class="btn btn-success mt-2">Novo Castro</i></a>
+                        </div>
+
+                        <div class="col-10">
+                            <h2 class="h2 mt-3 mb-4 text-center">Listar Fornecedores</h2>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered table-striped table-centered">
+                        <thead>
+                            <tr>
+                                <th width="10%">Nome Fantasia</th>
+                                <th>Razão Social</th>
+                                <th width="10%">CNPJ</th>
+                                <th>Nome Contato</th>
+                                <th>Email Contato</th>
+                                <th>Celular Contato</th>
+                                <th>Endereço</th>
+                                <th class="text-center" width="10%">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($fornecedores as $fornecedor)
+                            <tr>
+                                <td>{{ $fornecedor->nome_fantazia }}</td>
+                                <td>{{ $fornecedor->razao_social }}</td>
+                                <td>{{ $fornecedor->cnpj }}</td>
+                                <td>{{ $fornecedor->nome_contato }}</td>
+                                <td>{{ $fornecedor->email_contato }}</td>
+                                <td>{{ $fornecedor->cel_contato }}</td>
+                                <td>{{ $fornecedor->endereco }}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('fornecedores.show', $fornecedor->id) }}" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
+                                    <a href="{{ route('fornecedores.edit', $fornecedor->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <button wire:click="delete({{ $fornecedor->id }})" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!-- Links de Paginação -->
+                    {{ $fornecedores->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

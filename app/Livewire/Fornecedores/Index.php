@@ -3,19 +3,21 @@
 namespace App\Livewire\Fornecedores;
 
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Fornecedor;
 
 class Index extends Component
 {
-    public $fornecedores;
+    use WithPagination;
 
-    public function mount()
-    {
-        $this->fornecedores = Fornecedor::all();
-    }
+    protected $paginationTheme = 'bootstrap'; // Usar o tema Bootstrap para a paginação
 
     public function render()
     {
-        return view('livewire.fornecedores.index');
+        $fornecedores = Fornecedor::paginate(8); // Ajuste o número de itens por página conforme necessário
+
+        return view('livewire.fornecedores.index', [
+            'fornecedores' => $fornecedores,
+        ]);
     }
 }

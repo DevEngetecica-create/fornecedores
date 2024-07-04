@@ -67,6 +67,7 @@ class FornecedorController extends Controller
             ]);
 
             return $fornecedor;
+            
         } catch (\Exception $e) {
             \Log::error('Erro ao criar fornecedor: ' . $e->getMessage());
             return response()->json(['error' => 'Erro ao criar fornecedor'], 500);
