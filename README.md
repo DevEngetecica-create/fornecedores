@@ -1,3 +1,47 @@
+<h6>Requisitos:</h6>
+<p>PHP 8.1 ou superior</p>
+<p>Servidor Apache</p>
+<p>Banco de dados MySql</p>
+<p>Node.js</p>
+<p>Composer</p>
+<p>Servidor Redis</p>
+<p>Componente jetstream livewire</p>
+<p>Biblioteca: toastr</p>
+<p>Bootstrap 4.5.2 ou superior</p>
+<p>Jquery  3.5.1 </p>
+<p>Componente jetstream livewire</p>
+
+
+<p>Configuração do Ambiente</p>
+<p>1. Instale o Laravel</p>
+<p>composer create-project --prefer-dist laravel/laravel fornecedores "cd fornecedores"</p>
+<p>2. Instale o Livewire => composer require livewire/livewire</p>
+<p>3. Instale o Jetstream</p>
+<p>composer require laravel/jetstream</p>
+<p>php artisan jetstream:install livewire</p>
+<p>npm install && npm run dev</p>
+<p>php artisan migrate</p>
+
+<h3>Configuração de Autenticação</h3>
+<p>php artisan make:auth</p>
+
+<h3>Criação do Model e Migration</h3>
+<p>1. php artisan make:model Fornecedor -m</p>
+<p>2. Execute as Migrations</p>
+
+<h3>Criação dos Componentes Livewire</h3>
+<p>php artisan make:livewire Fornecedores/Index</p>
+<p>php artisan make:livewire Fornecedores/Create</p>
+<p>php artisan make:livewire Fornecedores/Edit</p>
+<p>php artisan make:livewire Fornecedores/Show</p>
+
+<h3>Rodando o Projeto</h3>
+<p>php artisan serve</p>
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
