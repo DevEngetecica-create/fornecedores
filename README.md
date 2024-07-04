@@ -10,7 +10,7 @@
 <p>Bootstrap 4.5.2 ou superior</p>
 <p>Jquery  3.5.1 </p>
 <p>Componente jetstream livewire</p>
-
+<hr>
 
 <p>Configuração do Ambiente</p>
 <p>1. Instale o Laravel</p>
@@ -21,21 +21,25 @@
 <p>php artisan jetstream:install livewire</p>
 <p>npm install && npm run dev</p>
 <p>php artisan migrate</p>
+<hr>
 
 <h3>Configuração de Autenticação</h3>
 <p>php artisan make:auth</p>
+<hr>
 
 <h3>Criação do Model e Migration</h3>
 <p>1. php artisan make:model Fornecedor -m</p>
 <p>2. Execute as Migrations</p>
-
+<hr>
 <h3>Criação dos Componentes Livewire</h3>
 <p>php artisan make:livewire Fornecedores/Index</p>
 <p>php artisan make:livewire Fornecedores/Create</p>
 <p>php artisan make:livewire Fornecedores/Edit</p>
 <p>php artisan make:livewire Fornecedores/Show</p>
-
+<hr>
 <h3>Rodando o Projeto</h3>
+<p>execute npm rum dev</p>
+<p>execute npm rum build</p>
 <p>php artisan serve</p>
 
 
