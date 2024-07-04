@@ -24,7 +24,7 @@ class FornecedorController extends Controller
     {
         return $this->fornecedorRepository->all();
     }
-   
+
 
     /**
      * Store a newly created resource in storage.
@@ -32,7 +32,7 @@ class FornecedorController extends Controller
     public function store(Request $request)
     {
         try {
-            $validatedData = $request->validate([       
+            $validatedData = $request->validate([
 
                 'nome_fantazia'     => 'required|string|max:255',
                 'razao_social'      => 'required|string|max:255',
@@ -60,7 +60,6 @@ class FornecedorController extends Controller
             ]);
 
             return $fornecedor;
-            
         } catch (\Exception $e) {
             \Log::error('Erro ao criar fornecedor: ' . $e->getMessage());
             return response()->json(['error' => 'Erro ao criar fornecedor'], 500);
@@ -74,7 +73,7 @@ class FornecedorController extends Controller
     {
         return $this->fornecedorRepository->find($id);
     }
-   
+
     /**
      * Update the specified resource in storage.
      */
