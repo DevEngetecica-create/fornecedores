@@ -57,7 +57,16 @@ class Edit extends Component
             'endereco' => $this->endereco,
         ]);
 
-        return redirect()->route('fornecedores.index');
+       // Prepare notification message
+       $notification = [
+        'notification' => [
+            'title' => "Atenção!!!",
+            'message' => 'Fornecedor editado com sucesso.',
+            'type' => 'success'
+        ]
+    ];
+
+    return redirect()->route('fornecedores.index')->with($notification);
     }
 
     public function render()

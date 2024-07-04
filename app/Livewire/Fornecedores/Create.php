@@ -41,8 +41,17 @@ class Create extends Component
             'cel_contato' => $this->cel_contato,
             'endereco' => $this->endereco,
         ]);
+        
+        // Prepare notification message
+        $notification = [
+            'notification' => [
+                'title' => "Atenção!!!",
+                'message' => 'Fornecedor cadastrado com sucesso.',
+                'type' => 'success'
+            ]
+        ];
 
-        return redirect()->route('fornecedores.index');
+        return redirect()->route('fornecedores.index')->with($notification);
     }
 
     public function render()

@@ -20,4 +20,21 @@ class Index extends Component
             'fornecedores' => $fornecedores,
         ]);
     }
+
+    public function delete($id)
+    {
+        $fornecedor = Fornecedor::findOrFail($id);
+        $fornecedor->delete();
+
+        // Prepare notification message
+        $notification = [
+            'notification' => [
+                'title' => "Atenção!!!",
+                'message' => 'Fornecedor deletado com sucesso.',
+                'type' => 'success'
+            ]
+        ];
+
+        return redirect()->route('fornecedores.index')->with($notification);
+    }
 }

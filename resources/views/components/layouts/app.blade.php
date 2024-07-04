@@ -18,6 +18,9 @@
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+     <!-- Toastr CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <!-- Custom CSS -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
@@ -54,11 +57,16 @@
     <!-- Bootstrap JS and dependencies (Popper.js and jQuery) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- jQuery Mask Plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <!-- Bootstrap JS and dependencies (Popper.js and jQuery) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
     <script>
         $(document).ready(function() {
@@ -75,10 +83,6 @@
                         success: function(response) {
                             // Sucesso: O CNPJ é válido
                             console.log(response);
-                            $('#nome_fantazia').val(response.nome_fantasia);
-                            $('#razao_social').val(response.razao_social);
-                            $('#endereco').val(response.descricao_tipo_de_logradouro + " " + response.logradouro + ", " + response.numero + ", " + response.bairro + "-" + response.cidade + "/ " + response.uf );
-                            //$('#cnpj').val('');
                         },
                         error: function() {
                             // Erro: O CNPJ é inválido
@@ -88,18 +92,45 @@
                     });
                 }
             });
-        });
-    </script>
 
-    <script>
-        function showAlert(message) {
-            Swal.fire({
-                title: 'Success!',
-                text: message,
-                icon: 'success',
-                confirmButtonText: 'OK'
+            // Listener para o evento de exibição do SweetAlert
+            window.addEventListener('showAlert', event => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: event.detail.message,
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
             });
-        }
+
+           
+             // Verifique se há uma notificação na sessão
+             @if(Session::has('notification'))
+                var notification = @json(Session::get('notification'));
+                console.log(notification);
+                var messagem = "<b>" + notification.title + "</b><br><p>" + notification.message + "</p>";
+                toastr[notification.type](messagem);
+            @endif
+
+            // Configuração do Toastr
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+        });
     </script>
 
     @livewireScripts

@@ -1,5 +1,6 @@
 @section('title', 'Fornecedores')
 
+
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col">
