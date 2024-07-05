@@ -6,6 +6,10 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
+                    <!-- Campo de Pesquisa -->
+                    <div class="form-group">
+                        <input type="text" wire:model.live="search" class="form-control" placeholder="Pesquisar por Nome Fantasia ou Razão Social...">
+                    </div>
 
                     <div class="row">
                         <div class="col-2">
