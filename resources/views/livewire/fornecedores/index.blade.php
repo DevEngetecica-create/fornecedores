@@ -24,8 +24,18 @@
                     <table class="table table-bordered table-striped table-centered">
                         <thead>
                             <tr>
-                                <th width="10%">Nome Fantasia</th>
-                                <th>Razão Social</th>
+                                <th>
+                                    <a href="#" wire:click.prevent="sortBy('nome_fantazia')">Nome Fantasia</a>
+                                    @if($sortField === 'nome_fantazia')
+                                    <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @endif
+                                </th>
+                                <th>
+                                    <a href="#" wire:click.prevent="sortBy('razao_social')">Razão Social</a>
+                                    @if($sortField === 'razao_social')
+                                    <i class="fas fa-sort-{{ $sortDirection === 'asc' ? 'up' : 'down' }}"></i>
+                                    @endif
+                                </th>
                                 <th width="10%">CNPJ</th>
                                 <th>Nome Contato</th>
                                 <th>Email Contato</th>

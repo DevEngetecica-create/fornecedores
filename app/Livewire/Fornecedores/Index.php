@@ -11,22 +11,32 @@ class Index extends Component
     use WithPagination;
 
     public $search = ''; // Propriedade para armazenar o termo de pesquisa
-
     protected $paginationTheme = 'bootstrap'; // Usar o tema Bootstrap para a paginação
+    public $sortField = 'nome_fantazia'; // Propriedade para armazenar a coluna de ordenação
+    public $sortDirection = 'asc'; // Propriedade para armazenar a direção de ordenação
 
-    public function updatingSearch()   {
-      
+    public function sortBy($field)
+    {
+        if ($this->sortField === $field) {
+            $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortField = $field;
+            $this->sortDirection = 'asc';
+        }
+    }
 
+    public function updatingSearch()
+    {
         $this->resetPage();
     }
 
     public function render()
     {
-        
 
         $fornecedores = Fornecedor::where('nome_fantazia', 'like', '%' . $this->search . '%')
-                                  ->orWhere('razao_social', 'like', '%' . $this->search . '%')
-                                  ->paginate(10);
+            ->orWhere('razao_social', 'like', '%' . $this->search . '%')
+            ->orderBy($this->sortField, $this->sortDirection)
+            ->paginate(10);
 
         return view('livewire.fornecedores.index', ['fornecedores' => $fornecedores]);
     }
